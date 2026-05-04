@@ -123,10 +123,10 @@ presence.on('UpdateData', async () => {
     }
   }
   else if ((
-    pathname.includes('/discover') || 
-    pathname.includes('/latest') ||
-    pathname.includes('/user/updates') ||
-    pathname.includes('/user/history')
+    pathname.includes('/discover')
+    || pathname.includes('/latest')
+    || pathname.includes('/user/updates')
+    || pathname.includes('/user/history')
   ) && showBrowsingActivity) {
     presenceData.details = strings.viewPage
     presenceData.state = document.querySelector<HTMLHeadingElement>('h1[class^="text-2xl"]')?.textContent
@@ -135,7 +135,7 @@ presence.on('UpdateData', async () => {
     presenceData.details = strings.viewProfile
     presenceData.state = document.querySelector<HTMLHeadingElement>('h1[class^="text-3xl"]')?.textContent
   }
-    else if (pathname.includes('/schedule') && showBrowsingActivity) {
+  else if (pathname.includes('/schedule') && showBrowsingActivity) {
     presenceData.details = strings.viewPage
     presenceData.state = document.querySelector<HTMLHeadingElement>('h2[class^="text-lg"]')?.textContent
   }
