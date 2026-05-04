@@ -23,6 +23,10 @@
   ],
   "settings": [
     {
+      "id": "lang",
+      "multiLanguage": true
+    },
+    {
       "id": "browsingActivity",
       "title": "Show Browsing",
       "icon": "fad fa-compass",
