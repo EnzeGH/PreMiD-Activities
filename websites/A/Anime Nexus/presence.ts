@@ -17,6 +17,7 @@ const ANIME_NEXUS = 'Anime Nexus'
 presence.on('UpdateData', async () => {
   const strings = await presence.getStrings({
     watchEpisode: 'general.buttonViewEpisode',
+    viewCollection: 'general.viewACategory',
     viewSeries: 'general.buttonViewSeries',
     viewProfile: 'general.viewProfile',
     viewPage: 'general.viewPage',
@@ -121,17 +122,30 @@ presence.on('UpdateData', async () => {
       ]
     }
   }
-  else if ((pathname.includes('/discover') || pathname.includes('/latest')) && showBrowsingActivity) {
+  else if ((
+    pathname.includes('/discover') || 
+    pathname.includes('/latest') ||
+    pathname.includes('/user/updates') ||
+    pathname.includes('/user/history')
+  ) && showBrowsingActivity) {
     presenceData.details = strings.viewPage
     presenceData.state = document.querySelector<HTMLHeadingElement>('h1[class^="text-2xl"]')?.textContent
   }
-  else if (pathname.includes('/schedule') && showBrowsingActivity) {
+  else if (pathname.includes('/user/profile') && showBrowsingActivity) {
+    presenceData.details = strings.viewProfile
+    presenceData.state = document.querySelector<HTMLHeadingElement>('h1[class^="text-3xl"]')?.textContent
+  }
+    else if (pathname.includes('/schedule') && showBrowsingActivity) {
     presenceData.details = strings.viewPage
     presenceData.state = document.querySelector<HTMLHeadingElement>('h2[class^="text-lg"]')?.textContent
   }
-  else if (pathname.includes('/user/profile') && showBrowsingActivity) {
-    presenceData.details = strings.viewProfile
-    presenceData.state = document.querySelector<HTMLHeadingElement>('h1[class^="text-3xl sm:text-4xl"]')?.textContent
+  else if (pathname.includes('/user/collection') && showBrowsingActivity) {
+    presenceData.details = strings.viewPage
+    presenceData.state = document.querySelector<HTMLHeadingElement>('h2[class^="text-3xl"]')?.textContent
+  }
+  else if (pathname.includes('/user/lists') && showBrowsingActivity) {
+    presenceData.details = strings.viewPage
+    presenceData.state = document.querySelector<HTMLHeadingElement>('h2[class^="text-2xl"]')?.textContent
   }
   else if (showBrowsingActivity) {
     presenceData.details = strings.browse
